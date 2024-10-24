@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mootez Zayati</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700,900&family=Roboto+Slab:wght@400;700&family=Astra+One&family=Outward&family=Playfair+Display:wght@400;700&family=Courier+New&family=Yatra+One&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&family=VT323&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="portfolio/assets/favicon.png" type="image/png">
+    <style>
+        :root {
+            --primary-color: #0a0a0a;
+            --primar-color: #ffa382d5;
+            --secondary-color: #f0f0f0;
+            --accent-color: #ff4400ca;
+            --accenv-color: #f0612d77;
+            --text-color: #e0e0e0;
+            --grey-color: #4a4a4a;
+        }
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Playfair Display', serif;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+            cursor: none;
+        }
+        .custom-cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--accent-color);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.2s ease;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        header {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15vw;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin: 0;
+            line-height: 0.8;
+            background: linear-gradient(45deg, var(--accent-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 400% 400%;
+            animation: gradientMove 15s ease infinite;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+        }
+        @keyframes gradientMove {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
+        .liquid-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" fill="%23ff4500" /></svg>');
+            background-size: 10px 10px;
+            mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="black" /></svg>');
+            mask-size: cover;
+            animation: liquidMove 20s linear infinite;
+            opacity: 0.1;
+        }
+        @keyframes liquidMove {
+            0% {background-position: 0 0;}
+            100% {background-position: 100px 100px;}
+        }
+        section {
+            padding: 150px 0;
+            border-bottom: 1px solid var(--grey-color);
+            margin: 0;
+            position: relative;
+            overflow: hidden;
+        }
+        h2 {
+            font-family: 'Outward', sans-serif;
+            font-size: 4em;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 50px;
+            text-align: left;
+            color: var(--secondary-color);
+        }
+        p {
+            font-family: 'Courier New', monospace;
+            font-size: 1.2em;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            color: var(--text-color);
+        }
+        .button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: var(--accent-color);
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: var(--secondary-color);
+            color: var(--accent-color);
+        }
+        .project {
+            margin-bottom: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        .project img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 30px;
+            border: none;
+            transition: all 0.5s ease;
+            cursor: pointer;
+        }
+        .project::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+        }
+        .project:hover::before {
+            opacity: 1;
+        }
+        .project:hover img {
+            transform: scale(1.05);
+            image-rendering: pixelated;
+        }
+        footer {
+            text-align: center;
+            padding: 100px 0;
+            background-color: var(--primary-color);
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 60px;
+        }
+        .social-links a {
+            color: var(--secondary-color);
+            font-size: 2em;
+            transition: all 0.3s;
+        }
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+        #about {
+            position: relative;
+            overflow: hidden;
+        }
+        .about-content {
+            display: flex;
+            gap: 80px;
+            align-items: center;
+        }
+        .about-text {
+            flex: 1;
+        }
+        .about-image {
+            flex: 1;
+            position: relative;
+        }
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        #services {
+            background-color: var(--primary-color);
+            perspective: 1000px;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        .service-item {
+            background-color: var(--accent-color);
+            padding: 30px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .service-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            transform: scaleX(0);
+            transform-origin: left;
+        }
+        .service-item:hover::before {
+            transform: scaleX(1);
+        }
+        .service-item:hover {
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            transform: scale(1.05);
+        }
+        .service-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        .service-title {
+            font-family: 'Rock Salt', cursive;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        .service-titl {
+            font-family: 'Rock Salt', cursive;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            font-weight: bold;
+            color: var(--primar-color);
+        }
+        .service-description {
+            font-family: 'VT323', monospace;
+            font-size: 1em;
+            line-height: 1.6;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+        .service-item:hover .service-icon,
+        .service-item:hover .service-title,
+        .service-item:hover .service-description {
+            color: var(--accent-color);
+        }
+        #contact .button {
+            display: block;
+            width: fit-content;
+            margin: 40px auto 0;
+            font-weight: 900;
+            font-size: 1.5em;
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 20vw;
+            }
+            h2 {
+                font-size: 3em;
+            }
+            section {
+                padding: 80px 0;
+            }
+            .about-content {
+                flex-direction: column;
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="custom-cursor"></div>
+    <header>
+        <div class="liquid-effect"></div>
+        <h1>Mootez Zayati</h1>
+    </header>
+
+    <section id="about">
+        <div class="container">
+            <h2>Visionary Creator</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Welcome to my vibrant world, where imagination knows no bounds and creativity reigns supreme. As a final-year Software Engineering student at EPI Digital School in Tunisia, I'm not just another designer – I'm a digital alchemist, transforming pixels into pure magic.</p>
+                    <p>With over 5 years of experience in graphic design and a razor-sharp focus on front-end development, I craft digital experiences that don't just catch the eye – they captivate the soul. My work is a testament to the harmonious blend of aesthetics and functionality, where every line of code is a brushstroke and every pixel tells a story.</p>
+                    <p>From bringing brands to life through comprehensive visual identities to building powerful Android applications, my portfolio is a kaleidoscope of digital innovation. My journey in tech is as diverse as it is exciting, spanning from the intricate world of back-end technologies to the mesmerizing realm of 3D rendering and VFX.</p>
+                </div>
+              
+            </div>
+            <a href="#projects" class="button">Explore the Magic</a>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2>Digital Masterpieces</h2>
+            <div class="project">
+                <img src="portfolio/assets/nemoz.png" alt="Nemoz Streaming Platform">
+                <h3 class="service-titl">Nemoz: A Streaming Revolution</h3>
+                <p>I invite you to dive into the world of Nemoz, a streaming platform that redefines digital entertainment. I built it with a symphony of PHP, SQL, JavaScript, HTML, and CSS. This isn't just a website – it's a portal to endless possibilities. Users don't just log in; they embark on a journey, guided by intuitive design and powered by seamless functionality. From personalized notifications to secure password management, Nemoz is more than a platform – it's a digital experience that keeps viewers coming back for more.</p>
+            </div>
+            <div class="project">
+                <img src="portfolio/assets/todooo.jpg" alt="Productivity Enhancer: To-Do App">
+                <h3 class="service-titl">TaskMaster: Productivity Reimagined</h3>
+                <p>Behold TaskMaster, my Laravel-powered productivity app that turns chaos into clarity. This isn't your average to-do list – it's a dynamic tool that adapts to your workflow. With its sleek interface and powerful features, TaskMaster doesn't just track tasks; it propels you towards your goals. From intuitive status tracking to time management wizardry, this app is your personal productivity coach, all wrapped up in a visually stunning package that makes getting things done a joy, not a chore.</p>
+            </div>
+            <div class="project">
+                <img src="portfolio/assets/zetmo.jpg" alt="Brand Odyssey">
+                <h3 class="service-titl">Brand Odyssey</h3>
+                <p>Step into the world of Zetmo, where timeless elegance meets modern sophistication. Our latest designs capture the essence of refined luxury, blending classic style with a bold, contemporary twist:
+                <br>•the Gentleman's Icon: This logo brings to life a distinguished figure, dressed in vintage attire, standing tall against the backdrop of an iconic skyline. It's not just a logo—it's a statement of class, a nod to the sophisticated and the daring who shape their own paths.
+                <br>• A Legacy of Excellence: Each line, color, and detail in the design speaks of grandeur. The top hat and cane evoke a sense of tradition, while the minimalist structure hints at modernity. Together, they form a visual journey, perfect for those who appreciate both heritage and innovation.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <h2>Digital Alchemy Services</h2>
+            <div class="services-grid">
+                <div class="service-item">
+                    <i class="fas fa-laptop-code service-icon"></i>
+                    <h3 class="service-title">Web Wizardry</h3>
+                    <p class="service-description">Transforming ideas into captivating digital realms that mesmerize and engage. From responsive designs to interactive user interfaces, I craft web experiences that leave lasting impressions.</p>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-mobile-alt service-icon"></i>
+                    <h3 class="service-title">Mobile Marvels</h3>
+                    <p class="service-description">Crafting Android applications that aren't just used – they're experienced. I bring your app ideas to life with intuitive UX/UI design and robust functionality.</p>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-paint-brush service-icon"></i>
+                    <h3 class="service-title">Visual Storytelling</h3>
+                    <p class="service-description">Breathing life into brands through logos, posters, and comprehensive visual narratives. I create designs that speak volumes and resonate with your target audience.</p>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-sync-alt service-icon"></i>
+                    <h3 class="service-title">Design Overhaul</h3>
+                    <p class="service-description">Revamping your entire website design using cutting-edge tools like Figma, Framer, or Webflow. I transform outdated designs into modern, sleek, and user-friendly interfaces.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Let's Create Magic</h2>
+            <p>Are you ready to embark on a digital adventure? To turn your wildest ideas into stunning realities? Whether you're dreaming of a website that defies expectations, a mobile app that revolutionizes user experience, or graphics that tell your story in ways words never could – let's make it happen. Together, we'll push the boundaries of what's possible in the digital realm.</p>
+            <a href="mailto:zayatimootez.it@gmail.com" class="button">Ignite the Spark</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <h2>Digital Visionary</h2>
+            <p> Join me in this digital odyssey, where i'll turn your boldest visions into breathtaking realities.</p>
+            <div class="social-links">
+                <a href="https://www.instagram.com/mootezzayati/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/mootez-zayati-181775331/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        const cursor = document.querySelector('.custom-cursor');
+        document.addEventListener('mousemove', e => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        gsap.from('h1', {
+            duration: 2,
+            opacity: 0,
+            y: 100,
+            ease: 'power3.out'
+        });
+
+        gsap.utils.toArray('section').forEach(section => {
+            gsap.from(section, {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: section,
+                    start: 'top 80%',
+                    end: 'bottom 20%',
+                    toggleActions: 'play none none reverse'
+                }
+            });
+        });
+
+        gsap.utils.toArray('.project').forEach((project, index) => {
+            gsap.from(project, {
+                opacity: 0,
+                x: index % 2 === 0 ? -100 : 100,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: project,
+                    start: 'top 80%',
+                    end: 'bottom 20%',
+                    toggleActions: 'play none none reverse'
+                }
+            });
+        });
+
+        gsap.utils.toArray('.service-item').forEach((item, index) => {
+            gsap.from(item, {
+                opacity: 0,
+                y: 50,
+                duration: 0.8,
+                delay: index * 0.2,
+                scrollTrigger: {
+                    trigger: '#services',
+                    start: 'top 80%',
+                    toggleActions: 'play none none reverse'
+                }
+            });
+        });
+
+        gsap.from('.about-image', {
+            opacity: 0,
+            x: 100,
+            duration: 1,
+            scrollTrigger: {
+                trigger: '#about',
+                start: 'top 80%',
+                toggleActions: 'play none none reverse'
+            }
+        });
+
+        gsap.to('.liquid-effect', {
+            duration: 20,
+            backgroundPosition: '100px 100px',
+            repeat: -1,
+            ease: 'linear'
+        });
+
+        const projectImages = document.querySelectorAll('.project img');
+        projectImages.forEach(img => {
+            img.addEventListener('click', () => {
+                gsap.to(img, {
+                    duration: 0.5,
+                    scale: 1.05,
+                    ease: 'power2.out',
+                    onComplete: () => {
+                        gsap.to(img, {
+                            duration: 0.5,
+                            scale: 1,
+                            ease: 'power2.in'
+                        });
+                    }
+                });
+            });
+        });
+
+        // Add hover animation for service items
+        const serviceItems = document.querySelectorAll('.service-item');
+        serviceItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                gsap.to(item, {
+                    duration: 0.3,
+                    scale: 1.05,
+                    backgroundColor: 'white',
+                    ease: 'power2.out'
+                });
+                gsap.to(item.querySelectorAll('.service-icon, .service-title, .service-description'), {
+                    duration: 0.3,
+                    color: 'var(--accent-color)',
+                    ease: 'power2.out'
+                });
+            });
+            item.addEventListener('mouseleave', () => {
+                gsap.to(item, {
+                    duration: 0.3,
+                    scale: 1,
+                    backgroundColor: 'var(--accent-color)',
+                    ease: 'power2.in'
+                });
+                gsap.to(item.querySelectorAll('.service-icon, .service-title, .service-description'), {
+                    duration: 0.3,
+                    color: 'var(--primary-color)',
+                    ease: 'power2.in'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
